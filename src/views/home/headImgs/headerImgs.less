@@ -1,0 +1,104 @@
+@import "../../../assets/css/index.less";
+.header-imgs-container {
+    width: 100%;
+
+    display: flex;
+    font-family: "futura", arial;
+    color: #fff;
+    overflow: hidden;
+    .shuffling-container {
+        flex-basis: 7.5rem;
+        position: relative;
+        overflow: hidden;
+        height: 4.5rem;
+        &:hover {
+            .control-page {
+                .left {
+                    opacity: 0.6;
+
+                    transform: translateX(-0.3rem);
+                }
+                .right {
+                    opacity: 0.6;
+                    transform: translateX(0.3rem);
+                }
+            }
+        }
+        .shuffle-item {
+            cursor: pointer;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 100ms ease;
+            height: 100%;
+            .img-des {
+                position: absolute;
+                display: inline-block;
+                bottom: 0.6rem;
+                width: 100%;
+                background: #00000061;
+                z-index: 10;
+                height: 0.3rem;
+                padding: 0.02rem 0.2rem;
+            }
+            &.show {
+                opacity: 1;
+                z-index: 3;
+            }
+        }
+        .shuffle-spot {
+            position: absolute;
+            bottom: 0rem;
+            height: 0.4rem;
+            width: 100%;
+            list-style: none;
+            padding-left: 0;
+            z-index: 10;
+            .center(0.4rem);
+            .spot {
+                display: inline-block;
+                cursor: pointer;
+                border-radius: 99px;
+                opacity: 0.3;
+                height: 0.15rem;
+                width: 0.15rem;
+                transition: all 100ms;
+                background: white;
+                margin: 0 0.05rem;
+                &.show {
+                    opacity: 1;
+                }
+            }
+        }
+        .control-page {
+            position: absolute;
+            top: 45%;
+            height: 0.8rem;
+            line-height: 0.5rem;
+            width: 100%;
+            font-size: 1rem;
+            color: #fff;
+            z-index: 5;
+
+            .tip {
+                display: inline-block;
+            }
+            .left {
+                margin-left: 0.6rem;
+                opacity: 0;
+                transition: all 150ms;
+            }
+            .right {
+                margin-right: 0.6rem;
+                opacity: 0;
+                float: right;
+                transition: all 150ms;
+            }
+        }
+    }
+    .rightImgs {
+        flex: 1;
+    }
+}

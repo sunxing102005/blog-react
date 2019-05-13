@@ -1,0 +1,49 @@
+@import "../../assets/css/index.less";
+header {
+    position: fixed;
+    top: 0;
+    z-index: 99999;
+    font-size: 0.2rem;
+    width: 100%;
+    background: #000;
+    color: rgb(189, 189, 189);
+    font-weight: 600;
+    font-family: "Microsoft YaHei", Arial, Helvetica, sans-serif;
+    .nav-container {
+        height: 0.8rem;
+        width: 11.4rem;
+        margin: 0 auto;
+        .logo {
+            font-size: 0.26rem;
+            color: rgb(0, 167, 235);
+            margin-right: 1.2rem;
+            float: left;
+        }
+        li {
+            list-style: none;
+            float: left;
+            line-height: 0.8rem;
+            cursor: pointer;
+            &:hover {
+                color: white;
+            }
+        }
+        .titleItem {
+            padding: 0 0.2rem;
+            font-size: 0.15rem;
+        }
+        .search {
+            float: right;
+            z-index: 90;
+            width: 0.8rem;
+            height: 0.8rem;
+            .center(0.8rem);
+            // text-align: center;
+            // vertical-align: middle;
+            // line-height: 60px;
+            .icon {
+                margin: auto;
+            }
+        }
+    }
+}

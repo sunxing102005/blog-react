@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
+    <meta name="google" value="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>SUNX BLOG</title>
+    <script>
+        (function (window, document) {
+            // 设计稿尺寸 1800
+            var designSourceWidth = 1800;
+            var flexible = {};
+            flexible.px2rem = function (px) {
+                return parseInt(px, 10) / 100;
+            };
+            flexible.mresize = function () {
+                var innerWidth =
+                    (document.documentElement &&
+                        document.documentElement.clientWidth) ||
+                    window.innerWidth;
+                if (!innerWidth) {
+                    return;
+                }
+                var width = innerWidth;
+                var fontSize = (width * 100) / designSourceWidth;
+                document.documentElement.style.fontSize = fontSize + "px";
+            };
+            flexible.mresize();
+            window.addEventListener("resize", flexible.mresize, false);
+            window.addEventListener("load", flexible.mresize, false);
+            setTimeout(function () {
+                flexible.mresize();
+            }, 300);
+            window.Flexible = flexible;
+        })(window, document);
+    </script>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+
+</html>
