@@ -1,0 +1,74 @@
+@import "../../assets/css/index.less";
+@colorSina: #ec3d51;
+@colorTecent: #68a6d6;
+@colorQQ: #2ab39a;
+@colorEmail: #12aae8;
+@colorWechat: #199872;
+.join-container {
+    width: 100%;
+    font-size: 0.12rem;
+    .com-item {
+        line-height: 0.4rem;
+        width: 100%;
+        box-sizing: border-box;
+        padding-left: 0.1rem;
+        margin-bottom: 0.2rem;
+
+        border-radius: 3px;
+        .com-icon {
+            margin-right: 0.1rem;
+        }
+        &:hover {
+            .com-name {
+                width: 1.2rem;
+            }
+        }
+        // .center(0.4rem);
+        .content-com {
+            color: #525252;
+        }
+        .com-name {
+            height: 100%;
+            width: 1rem;
+            .center(0.4rem);
+            color: white;
+            float: right;
+            transition: width 500ms ease;
+        }
+        &.sina {
+            border: @colorSina 1px solid;
+            color: @colorSina;
+            .com-name {
+                background: @colorSina;
+            }
+        }
+        &.tecent {
+            border: @colorTecent 1px solid;
+            color: @colorTecent;
+            .com-name {
+                background: @colorTecent;
+            }
+        }
+        &.qq {
+            border: @colorQQ 1px solid;
+            color: @colorQQ;
+            .com-name {
+                background: @colorQQ;
+            }
+        }
+        &.email {
+            border: @colorEmail 1px solid;
+            color: @colorEmail;
+            .com-name {
+                background: @colorEmail;
+            }
+        }
+        &.wechat {
+            border: @colorWechat 1px solid;
+            color: @colorWechat;
+            .com-name {
+                background: @colorWechat;
+            }
+        }
+    }
+}

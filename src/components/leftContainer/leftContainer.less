@@ -1,0 +1,34 @@
+@import "../../assets/css/index.less";
+.left-container {
+    width: 3.64rem;
+    box-sizing: border-box;
+    // flex: 1;
+    margin: 0.2rem 0 0 0.2rem;
+    padding: 0.35rem 0.3rem;
+    background: white;
+    .title {
+        font-size: 0.18rem;
+        color: #282828;
+        font-weight: 600;
+        margin: 0;
+        text-transform: uppercase;
+        padding-bottom: 0.15rem;
+        margin-bottom: 0.25rem;
+        position: relative;
+        .border-bottom-trans();
+    }
+    &:hover {
+        .title:after {
+            width: 0.8rem;
+        }
+    }
+    &.fixed {
+        width: 300px;
+        top: 100px;
+        z-index: 999;
+        position: fixed;
+        // _position: absolute;
+        // _top: expression(documentElement.scrollTop + 0 + "px");
+        // _margin-top: 100px;
+    }
+}

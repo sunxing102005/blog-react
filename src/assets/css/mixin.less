@@ -3,3 +3,19 @@
     text-align: center;
     vertical-align: middle;
 }
+.tile-all(@percent:100%) {
+    width: @percent;
+    height: @percent;
+}
+.border-bottom-trans(@width:0.5rem,@height:0.02rem,@tranSec:800ms) {
+    &:after {
+        content: "";
+        background-color: #282828;
+        left: 0;
+        width: @width;
+        height: @height;
+        bottom: 0;
+        position: absolute;
+        transition: @tranSec;
+    }
+}

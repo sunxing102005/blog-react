@@ -1,23 +1,36 @@
 import React from "react";
 import "./headerImgs.less";
-const shufflingImgs = [
-    {
-        src: "/src/assets/images/banner01.jpg",
-        text: "别让这些闹心的套路，毁了你的网页设计!"
-    },
-    {
-        src: "/src/assets/images/banner02.jpg",
-        text: "网页中图片属性固定宽度，如何用js改变大小"
-    },
-    {
-        src: "/src/assets/images/banner03.jpg",
-        text: "个人博客，属于我的小世界"
-    }
-];
+import LeftImg from "../leftImg/LeftImg";
+import { shufflingImgs, leftImgs } from "@/enums/home";
 export default class HeaderImgs extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleControlPage = this.handleControlPage.bind(this);
+        this.changeCurrIndex = this.changeCurrIndex.bind(this);
+    }
     state = {
-        currIndex: 1
+        currIndex: 0
     };
+
+    componentDidMount() {
+        window.setInterval(() => {
+            // console.log("this.state.currIndex ", this.state.currIndex);
+            this.changeCurrIndex(1);
+        }, 5000);
+    }
+    handleControlPage(type) {
+        const increment = type === "left" ? -1 : 1;
+        this.changeCurrIndex(increment);
+    }
+    changeCurrIndex(increment) {
+        if (this.state.currIndex < 2) {
+            this.setState(preState => ({
+                currIndex: preState.currIndex + increment
+            }));
+        } else {
+            this.setState({ currIndex: 0 });
+        }
+    }
     render() {
         const left = "<";
         const right = ">";
@@ -46,11 +59,29 @@ export default class HeaderImgs extends React.Component {
                         ))}
                     </ul>
                     <div className="control-page">
-                        <div className="tip left">{left}</div>
-                        <div className="tip right">{right}</div>
+                        <div
+                            className="tip left"
+                            onClick={() => this.handleControlPage("left")}
+                        >
+                            {left}
+                        </div>
+                        <div
+                            className="tip right"
+                            onClick={() => this.handleControlPage("right")}
+                        >
+                            {right}
+                        </div>
                     </div>
                 </div>
-                <div className="rightImgs" />
+                <div className="rightImgs">
+                    {leftImgs.map((item, index) => (
+                        <LeftImg
+                            className="left-img-item"
+                            {...item}
+                            key={index}
+                        />
+                    ))}
+                </div>
             </div>
         );
     }
