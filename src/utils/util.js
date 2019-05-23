@@ -16,3 +16,6 @@ export function throttle(callback, delay) {
         }
     };
 }
+export function deleteHTMLTag(str) {
+    return str.replace(/<[^>]+>/g, "");
+}

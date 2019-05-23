@@ -10,7 +10,7 @@ export default class RecommandList extends React.Component {
                     if (index === 0) {
                         return (
                             <div className="top-img" key={index}>
-                                <img src={item.src} />
+                                <img src={item.thumb} />
                                 <div className="top-title">{item.title}</div>
                             </div>
                         );
@@ -18,10 +18,10 @@ export default class RecommandList extends React.Component {
                         return (
                             <div className="bottom-wrapper" key={index}>
                                 <div className="left-recommand-container">
-                                    <img src={item.src} />
+                                    <img src={item.thumb} />
                                 </div>
                                 <p className="right-title">{item.title}</p>
-                                <span className="right-time">{item.time}</span>
+                                <span className="right-time">{item.date}</span>
                             </div>
                         );
                     }

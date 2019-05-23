@@ -3,9 +3,7 @@ const date = {
      * 日期格式化
      * @param phone
      */
-    toFormat: function(dateStr, fmt = "yyyy-MM-dd hh:mm:ss") {
-        const date = new Date(dateStr);
-        //author: meizz
+    toFormat: function(date, fmt = "yyyy-MM-dd hh:mm:ss") {
         const o = {
             "M+": date.getMonth() + 1, //月份
             "d+": date.getDate(), //日

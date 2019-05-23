@@ -8,14 +8,8 @@
  * }
  * service(option)
  */
-import { message } from "antd";
 import axios from "axios";
 import base from "./base.js";
-import React from "react";
-import { fedLogout } from "@/action/system/login";
-import { getToken } from "@/utils/auth";
-const qs = require("querystring");
-// import { Message } from "element-ui";
 
 const service = option => {
     console.log("option", option);
@@ -38,24 +32,27 @@ const service = option => {
     let sendData = option.data || {};
 
     if (req.method.toLowerCase() === "post") {
-        // formData直接取参数，不通过qs.stringify
         if (option.isFormData) {
             req.data = sendData.formData;
         } else {
             //针对参数类型是对象（包含数组）
             for (const key in sendData) {
-                if (typeof sendData[key] === "object") {
+                if (
+                    typeof sendData[key] === "object" &&
+                    !sendData[key] instanceof Array
+                ) {
                     sendData[key] = JSON.stringify(sendData[key]);
                 }
             }
-            sendData = qs.stringify(sendData);
+            // console.log("sendData", sendData);
+            // sendData = qs.stringify(sendData);
+            // console.log("sendData1", sendData);
             req.data = sendData;
         }
     } else if (req.method === "get") {
         req.params = sendData;
-    }
-    if (getToken()) {
-        req.headers = { access_token: getToken() };
+    } else {
+        req.data = sendData;
     }
     /*
     else {
@@ -71,6 +68,7 @@ const service = option => {
 
     return axios({ url, ...req, responseType })
         .then(res => {
+            console.log("res", res);
             const response = res.data;
             if (isBlob) {
                 return response;
@@ -80,21 +78,17 @@ const service = option => {
                 req.callbackErrFn(errmsg || "接口请求失败");
             } else {
                 req.callbackFn && req.callbackFn(response.data);
+                Promise.resolve(response.data);
                 return response.data;
             }
         })
         .catch(error => {
             let res = error.response;
-            // console.log("res.status", res);
-            // console.log("notification", notification);
-            // message.destroy();
-            if (res.status == 401) {
-                message.info("登录信息失效，请重新登录").then(() => {
-                    React.$store.dispatch(fedLogout());
-                });
-            }
+            // message.error(error.message);
+            // return Promise.reject(error);
             req.callbackErrFn &&
                 req.callbackErrFn(res.message || "接口请求失败");
+            throw error.message;
         });
 };
 

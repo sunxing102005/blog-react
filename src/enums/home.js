@@ -31,23 +31,23 @@ export const specialArts = [
 export const recommandList = [
     {
         title: "别让这些闹心的套路，毁了你的网页设计",
-        src: "/src/assets/images/topic01.jpg",
-        time: "2018-09-10"
+        thumb: "/src/assets/images/topic01.jpg",
+        date: "2018-09-10"
     },
     {
         title: "给我模板PSD源文件，我给你设计HTML！",
-        src: "/src/assets/images/topic02.jpg",
-        time: "2018-09-10"
+        thumb: "/src/assets/images/topic02.jpg",
+        date: "2018-09-10"
     },
     {
         title: "别让这些闹心的套路，毁了你的网页设计",
-        src: "/src/assets/images/topic01.jpg",
-        time: "2018-09-10"
+        thumb: "/src/assets/images/topic01.jpg",
+        date: "2018-09-10"
     },
     {
         title: "给我模板PSD源文件，我给你设计HTML！",
-        src: "/src/assets/images/b01.jpg",
-        time: "2018-09-10"
+        thumb: "/src/assets/images/b01.jpg",
+        date: "2018-09-10"
     }
 ];
 export const tagColorList = [

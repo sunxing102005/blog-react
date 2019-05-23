@@ -3,10 +3,10 @@ import { tagColorList } from "@/enums/home";
 import Tag from "./Tag";
 export default class TagGroup extends React.Component {
     render() {
-        const { list } = this.props;
+        const { list, style } = this.props;
         let count = 0;
         return (
-            <div>
+            <div style={style ? style : {}}>
                 {list.map((item, index) => {
                     if (count === tagColorList.length - 1) {
                         count = 0;

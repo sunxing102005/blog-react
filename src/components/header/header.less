@@ -9,6 +9,10 @@ header {
     color: rgb(189, 189, 189);
     font-weight: 600;
     font-family: "Microsoft YaHei", Arial, Helvetica, sans-serif;
+    a {
+        text-decoration: none;
+        color: rgb(189, 189, 189);
+    }
     .nav-container {
         height: 0.8rem;
         width: 11.4rem;
@@ -31,6 +35,9 @@ header {
         .titleItem {
             padding: 0 0.2rem;
             font-size: 0.15rem;
+            &.active {
+                color: #00a7eb;
+            }
         }
         .search {
             float: right;

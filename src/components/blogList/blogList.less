@@ -11,6 +11,7 @@
         .blog-title {
             font-size: 0.2rem;
             margin-bottom: 0.1rem;
+            cursor: pointer;
         }
         .blog-wrapper {
             // display: flex;
@@ -27,14 +28,24 @@
                 }
             }
             .blog-des {
-                font-size: 0.14rem;
+                font-size: 0.15rem;
                 color: #566573;
+                height: 0.65rem;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 3;
                 overflow: hidden;
+                // overflow: hidden;
+                // -webkit-line-clamp: 3;
+                // display: -webkit-box;
+                // -webkit-box-orient: vertical;
+                // overflow: hidden;
                 text-overflow: ellipsis;
                 display: block;
                 margin-top: 0.1rem;
                 width: 65%;
                 float: right;
+                position: relative;
                 &.no-pic {
                     width: 100%;
                 }

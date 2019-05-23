@@ -3,10 +3,42 @@ import { blogLists } from "@/enums/home";
 import "./blogList.less";
 import scrollReveal from "scrollReveal";
 import LazyLoad from "react-lazyload";
-export default class BlogList extends React.Component {
+import { getBlogList } from "@/api/content";
+import { deleteHTMLTag } from "@/utils/util";
+import dateUtil from "@/utils/date";
+class BlogList extends React.Component {
     constructor(props) {
         super(props);
         this.scrollReveal = scrollReveal();
+    }
+    state = {
+        list: [],
+        recentBLogs: []
+    };
+    componentWillMount() {
+        let params = {};
+        let type = this.props.type;
+        if (type) {
+            params["category_id"] = type == "tech" ? "1" : "2";
+        }
+        getBlogList(params).then(res => {
+            let list = res.content;
+            list = list.map(item => {
+                let date = null;
+                if (item.publish_time) {
+                    date = dateUtil.toFormat(
+                        new Date(item.publish_time),
+                        "yyyy-MM-dd"
+                    );
+                }
+                return {
+                    ...item,
+                    des: deleteHTMLTag(item.content),
+                    date
+                };
+            });
+            this.setState({ list });
+        });
     }
     componentDidMount() {
         //设置 blog-item 滚动动画效果
@@ -30,19 +62,20 @@ export default class BlogList extends React.Component {
         });
     }
     render() {
+        let list = this.state.list;
         return (
             <div className="blog-list-container">
-                {blogLists.map((item, index) => {
+                {list.map((item, index) => {
                     return (
                         // <LazyLoad key={index} debounce={500}>
                         <div className="blog-item" key={index}>
                             <h3 className="blog-title">{item.title}</h3>
                             <div className="blog-wrapper">
-                                <img src={item.img} />
+                                <img src={item.thumb} />
                                 <p
                                     className={[
                                         "blog-des",
-                                        item.img ? "" : "no-pic"
+                                        item.thumb ? "" : "no-pic"
                                     ].join(" ")}
                                 >
                                     {item.des}
@@ -51,23 +84,28 @@ export default class BlogList extends React.Component {
                                     <ul>
                                         <li className="author">
                                             <i className="fa fa-user icon" />
-                                            {item.author}
+                                            {"孙星"}
                                         </li>
                                         <li className="tag">
                                             <i className="fa fa-server icon" />
-                                            {item.type}
+                                            {item.category.name}
                                         </li>
-                                        <li className="time">
-                                            <i className="fa fa-clock-o icon" />
-                                            {item.time}
-                                        </li>
+                                        {item.date ? (
+                                            <li className="time">
+                                                {" "}
+                                                <i className="fa fa-clock-o icon" />
+                                                {item.date}
+                                            </li>
+                                        ) : (
+                                            ""
+                                        )}
                                         <li className="views">
                                             <i className="fa fa-eye icon" />
-                                            {item.views}
+                                            {item.view}
                                         </li>
                                         <li className="likes">
                                             <i className="fa fa-heart icon" />
-                                            {item.likes}
+                                            {item.likes ? item.likes : 0}
                                         </li>
                                     </ul>
                                 </div>
@@ -80,3 +118,7 @@ export default class BlogList extends React.Component {
         );
     }
 }
+BlogList.defaultProps = {
+    category_id: null
+};
+export default BlogList;

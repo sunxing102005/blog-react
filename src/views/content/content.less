@@ -1,0 +1,97 @@
+@import "../../assets/css/mixin.less";
+.content-container {
+    width: 11.4rem;
+    margin: 1rem auto 0;
+    overflow: hidden;
+    // background: white;
+    .top-tip {
+        padding: 0.1rem 0.02rem;
+        text-align: right;
+        border-bottom: 1px solid #bfbfbf;
+        margin-top: 0.2rem;
+    }
+    // .content-wrapper {
+    //     width: 7.5rem;
+    //     display: block;
+    //     margin-top: 0.2rem;
+    //     h2 {
+    //         font-size: 0.24rem;
+    //         font-weight: normal;
+    //         padding: 0.3rem 0 0 0;
+    //         color: #333;
+    //     }
+    // }
+    .bottom-container {
+        display: flex;
+        width: 100%;
+        margin-top: 0.2rem;
+        align-items: flex-start;
+        h2 {
+            font-size: 0.24rem;
+            font-weight: normal;
+            color: #333;
+        }
+        .bottom-left-container {
+            padding: 0.2rem 0.2rem;
+            flex-basis: 7.5rem;
+            background: white;
+            margin-top: 0.2rem;
+            .blog-content {
+                padding: 0.2rem 0;
+            }
+            .star-container {
+                padding-top: 0.2rem;
+                width: 100%;
+                .star {
+                    margin-left: 20%;
+                    display: inline-block;
+                    border-radius: 3px;
+                    font-weight: 600;
+
+                    background: #e2523a;
+                    width: 1.6rem;
+                    height: 0.4rem;
+                    box-shadow: 1px 2px 6px 0px rgba(0, 0, 0, 0.2);
+                    color: white;
+                    .center(0.4rem);
+                    cursor: pointer;
+                    &.support {
+                        margin-left: 0.3rem;
+                    }
+                }
+            }
+            .bottom-article {
+                .bottom-title {
+                    font-weight: 500;
+                    width: 100%;
+                    padding: 0.1rem 0.1rem;
+                    border-bottom: #000 2px solid;
+                    font-size: 0.14rem;
+                    .icon {
+                        margin-right: 0.2rem;
+                        color: #ccc;
+                    }
+                }
+                .link-article {
+                    width: 50%;
+                    padding-top: 0.1rem;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+    .info {
+        color: #748594;
+        padding-left: 0;
+
+        // float: left;
+        font-size: 0.12rem;
+        li {
+            display: inline-block;
+            margin-right: 0.15rem;
+            .icon {
+                margin-right: 0.1rem;
+            }
+        }
+    }
+}

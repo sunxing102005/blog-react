@@ -6,16 +6,30 @@ export function getContent(params) {
         data: params
     });
 }
-export function deleteArticle({ id }) {
+export function getBlogList(params) {
     return service({
-        url: "/api/content/" + id,
-        method: "delete"
+        url: "/font/content/listNoPage",
+        method: "get",
+        data: params
     });
 }
-export function addArticle(params, id) {
+export function getRecent() {
     return service({
-        url: id ? "/api/content/" + id : "/api/content",
-        method: "post",
+        url: "/font/content/recentFiveBlogs",
+        method: "get"
+    });
+}
+export function getBlogById(params) {
+    return service({
+        url: "/font/content/getBlogById",
+        method: "get",
+        data: params
+    });
+}
+export function getAllTags(params) {
+    return service({
+        url: "/api/meta",
+        method: "get",
         data: params
     });
 }

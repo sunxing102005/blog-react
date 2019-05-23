@@ -1,7 +1,8 @@
 import React from "react";
 import "./headerImgs.less";
 import LeftImg from "../leftImg/LeftImg";
-import { shufflingImgs, leftImgs } from "@/enums/home";
+import { shufflingImgs } from "@/enums/home";
+import { getRecent } from "@/api/content";
 export default class HeaderImgs extends React.Component {
     constructor(props) {
         super(props);
@@ -9,15 +10,24 @@ export default class HeaderImgs extends React.Component {
         this.changeCurrIndex = this.changeCurrIndex.bind(this);
     }
     state = {
-        currIndex: 0
+        currIndex: 0,
+        recentBlogs: []
     };
 
     componentDidMount() {
-        window.setInterval(() => {
-            // console.log("this.state.currIndex ", this.state.currIndex);
-            this.changeCurrIndex(1);
-        }, 5000);
+        this.getRecentFiveBlog();
     }
+    getRecentFiveBlog = () => {
+        getRecent().then(res => {
+            let blogs = res.recent.content;
+            // console.log("blogs", res);
+            this.setState({ recentBlogs: blogs });
+            window.setInterval(() => {
+                // console.log("this.state.currIndex ", this.state.currIndex);
+                this.changeCurrIndex(1);
+            }, 5000);
+        });
+    };
     handleControlPage(type) {
         const increment = type === "left" ? -1 : 1;
         this.changeCurrIndex(increment);
@@ -34,18 +44,28 @@ export default class HeaderImgs extends React.Component {
     render() {
         const left = "<";
         const right = ">";
+        let shuffleImgs = this.state.recentBlogs.slice(0, 3);
+        let leftImgsArr = this.state.recentBlogs.slice(3);
+        let leftImgData = leftImgsArr.map(item => {
+            return {
+                src: item.thumb,
+                tTitle: item.category.name,
+                bTitle: item.title
+            };
+        });
+        // console.log("shuffleImgs", shuffleImgs);
         return (
             <div className="header-imgs-container">
                 <div className="shuffling-container">
-                    {shufflingImgs.map((item, index) => (
+                    {shuffleImgs.map((item, index) => (
                         <div
                             className={`shuffle-item ${
                                 index === this.state.currIndex ? "show" : ""
                             }`}
                             key={index}
                         >
-                            <img src={item.src} />
-                            <div className="img-des">{item.text}</div>
+                            <img src={item.thumb} />
+                            <div className="img-des">{item.title}</div>
                         </div>
                     ))}
                     <ul className="shuffle-spot">
@@ -74,7 +94,7 @@ export default class HeaderImgs extends React.Component {
                     </div>
                 </div>
                 <div className="rightImgs">
-                    {leftImgs.map((item, index) => (
+                    {leftImgData.map((item, index) => (
                         <LeftImg
                             className="left-img-item"
                             {...item}

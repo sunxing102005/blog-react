@@ -11,24 +11,26 @@ export default class JoinUs extends React.Component {
         className: ""
     };
     componentDidMount() {
-        let followmeScrollTop = document.getElementById("fellowMe").offsetTop;
-        this.followmeScrollTop = followmeScrollTop;
-        window.addEventListener("scroll", throttle(this.handleScroll, 500));
+        // let followmeScrollTop = document.getElementById("fellowMe").offsetTop;
+        // this.followmeScrollTop = followmeScrollTop;
+        // console.log("followmeScrollTop", followmeScrollTop);
+        window.addEventListener("scroll", throttle(this.handleScroll, 200));
     }
     handleScroll(e) {
         let scrollTop = document.documentElement.scrollTop;
-        let followmeScrollTop = this.followmeScrollTop;
-        // console.log(
-        //     "followmeScrollTop",
-        //     followmeScrollTop
-        // );
+        let followmeScrollTop = this.props.followmeScrollTop;
+        if (followmeScrollTop == 0) {
+            return;
+        }
+        // console.log("followmeScrollTop", followmeScrollTop);
+        // console.log("scrollTop", scrollTop);
         // console.log("flag", scrollTop - followmeScrollTop > 0);
         if (scrollTop - followmeScrollTop > 0) {
             this.setState({ className: "fixed" });
         } else {
             this.setState({ className: "" });
         }
-        console.log("scroll", e);
+        // console.log("scroll", scrollTop);
     }
     render() {
         return (
