@@ -33,3 +33,17 @@ export function getAllTags(params) {
         data: params
     });
 }
+export function changeLikes(params) {
+    return service({
+        url: "/font/content/changeLikes",
+        method: "get",
+        data: params
+    });
+}
+export function getLastNextBlog(params) {
+    return service({
+        url: "/font/content/getLastAndNextBlog",
+        method: "post",
+        data: params
+    });
+}

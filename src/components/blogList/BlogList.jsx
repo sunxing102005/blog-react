@@ -6,6 +6,7 @@ import LazyLoad from "react-lazyload";
 import { getBlogList } from "@/api/content";
 import { deleteHTMLTag } from "@/utils/util";
 import dateUtil from "@/utils/date";
+import { toContentById } from "@/utils/common";
 class BlogList extends React.Component {
     constructor(props) {
         super(props);
@@ -61,6 +62,9 @@ class BlogList extends React.Component {
             // easing: "cubic-bezier(0.5, 0, 0, 1)"
         });
     }
+    toDetailBlog = id => {
+        toContentById(id);
+    };
     render() {
         let list = this.state.list;
         return (
@@ -68,7 +72,11 @@ class BlogList extends React.Component {
                 {list.map((item, index) => {
                     return (
                         // <LazyLoad key={index} debounce={500}>
-                        <div className="blog-item" key={index}>
+                        <div
+                            className="blog-item"
+                            key={index}
+                            onClick={() => this.toDetailBlog(item.id)}
+                        >
                             <h3 className="blog-title">{item.title}</h3>
                             <div className="blog-wrapper">
                                 <img src={item.thumb} />
