@@ -6,9 +6,9 @@ const headerList = [
     { name: "网站首页", path: "/" },
     { name: "关于我", path: "/" },
     { name: "技术博客", path: "/type/tech" },
-    { name: "慢生活", path: "/type/life" },
-    { name: "时间轴", path: "/" },
-    { name: "内容页", path: "/content" }
+    { name: "慢生活", path: "/type/life" }
+    // { name: "时间轴", path: "/" },
+    // { name: "内容页", path: "/content" }
 ];
 export default
 @withRouter

@@ -3,6 +3,7 @@ import "./headerImgs.less";
 import LeftImg from "../leftImg/LeftImg";
 import { shufflingImgs } from "@/enums/home";
 import { getRecent } from "@/api/content";
+import { toContentById } from "@/utils/common";
 export default class HeaderImgs extends React.Component {
     constructor(props) {
         super(props);
@@ -41,6 +42,9 @@ export default class HeaderImgs extends React.Component {
             this.setState({ currIndex: 0 });
         }
     }
+    toDetail = id => {
+        toContentById(id);
+    };
     render() {
         const left = "<";
         const right = ">";
@@ -49,6 +53,7 @@ export default class HeaderImgs extends React.Component {
         let leftImgData = leftImgsArr.map(item => {
             return {
                 src: item.thumb,
+                id: item.id,
                 tTitle: item.category.name,
                 bTitle: item.title
             };
@@ -63,6 +68,7 @@ export default class HeaderImgs extends React.Component {
                                 index === this.state.currIndex ? "show" : ""
                             }`}
                             key={index}
+                            onClick={this.toDetail.bind(this, item.id)}
                         >
                             <img src={item.thumb} />
                             <div className="img-des">{item.title}</div>
@@ -99,6 +105,7 @@ export default class HeaderImgs extends React.Component {
                             className="left-img-item"
                             {...item}
                             key={index}
+                            onClick={this.toDetail.bind(this, item.id)}
                         />
                     ))}
                 </div>

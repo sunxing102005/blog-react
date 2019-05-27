@@ -8,6 +8,7 @@ import JoinUs from "@/components/joinUs/Joinus";
 import "./leftContainerWhole.less";
 import { getBlogList, getRecent, getAllTags } from "@/api/content";
 import dateUtil from "@/utils/date";
+import { toContentById } from "@/utils/common";
 export default class Home extends React.Component {
     state = {
         viewOrderedList: [],
@@ -93,6 +94,9 @@ export default class Home extends React.Component {
             this.setState({ recommendList: list });
         });
     };
+    toDetail = id => {
+        toContentById(id);
+    };
     getAllTags = () => {
         return getAllTags({ type: "tag" }).then(res => {
             let list = res.map(item => item.name);
@@ -112,6 +116,7 @@ export default class Home extends React.Component {
                             title={item.title}
                             src={item.thumb}
                             key={index}
+                            onClick={this.toDetail.bind(this, item.id)}
                         />
                     ))}
                 </LeftContainer>
