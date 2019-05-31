@@ -3,7 +3,7 @@ const paths = require("./paths");
 const webpack = require("webpack");
 
 const merge = require("webpack-merge");
-
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const BaseConfig = require("./webpack.config.base.js");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -20,7 +20,12 @@ const shouldUseSourceMap = false;
 module.exports = merge(BaseConfig, {
     mode: "production",
     devtool: "#source-map",
-
+    output: {
+        filename: "static/js/[name]-[hash:5].js",
+        path: resolve("../../../think-js/projects/self-blog-backend/www"),
+        publicPath: "/",
+        chunkFilename: "static/js/[name].[hash:5].chunk.js"
+    },
     optimization: {
         minimizer: [
             new TerserPlugin({
@@ -78,12 +83,16 @@ module.exports = merge(BaseConfig, {
         runtimeChunk: true
     },
     plugins: [
+        new MiniCssExtractPlugin({
+            filename: `static/css/[name]-css-[hash:5].css`,
+            path: resolve("../../../think-js/projects/self-blog-backend/www")
+        }),
         new webpack.DefinePlugin({
             SERVER_HOST: JSON.stringify("prd")
         }),
-        new CleanWebpackPlugin(),
+        new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ["**/static"] }),
         new HtmlWebpackPlugin({
-            filename: `./view/${projectName}/blog_index.html`,
+            filename: `../view/index_index.html`,
             template: paths.appHtml,
             favicon: resolve("favicon.ico"),
             title: "系统",

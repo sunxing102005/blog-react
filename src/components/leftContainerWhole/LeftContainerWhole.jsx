@@ -9,6 +9,7 @@ import "./leftContainerWhole.less";
 import { getBlogList, getRecent, getAllTags } from "@/api/content";
 import dateUtil from "@/utils/date";
 import { toContentById } from "@/utils/common";
+import config from "@/config/index.js";
 export default class Home extends React.Component {
     state = {
         viewOrderedList: [],
@@ -114,7 +115,7 @@ export default class Home extends React.Component {
                     {recommendList.map((item, index) => (
                         <SpecialArt
                             title={item.title}
-                            src={item.thumb}
+                            src={config.serverHost + item.thumb}
                             key={index}
                             onClick={this.toDetail.bind(this, item.id)}
                         />

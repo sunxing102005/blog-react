@@ -6,6 +6,7 @@ const paths = require("./paths");
 const path = require("path");
 const BaseConfig = require("./webpack.config.base.js");
 const config = require("../config");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 function resolve(dir) {
     return path.join(__dirname, "..", dir);
 }
@@ -46,6 +47,9 @@ module.exports = merge(BaseConfig, {
             title: "SUNX BLOG",
             favicon: resolve("favicon.ico"),
             inject: true
+        }),
+        new MiniCssExtractPlugin({
+            filename: `static/css/[name]-css-[hash:5].css`
         })
     ]
 });

@@ -7,6 +7,7 @@ import { getBlogList } from "@/api/content";
 import { deleteHTMLTag } from "@/utils/util";
 import dateUtil from "@/utils/date";
 import { toContentById } from "@/utils/common";
+import config from "@/config/index.js";
 class BlogList extends React.Component {
     constructor(props) {
         super(props);
@@ -79,7 +80,7 @@ class BlogList extends React.Component {
                         >
                             <h3 className="blog-title">{item.title}</h3>
                             <div className="blog-wrapper">
-                                <img src={item.thumb} />
+                                <img src={config.serverHost + item.thumb} />
                                 <p
                                     className={[
                                         "blog-des",

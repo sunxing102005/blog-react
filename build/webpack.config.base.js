@@ -71,10 +71,10 @@ module.exports = {
     },
     context: path.resolve(__dirname, "../"),
     output: {
-        filename: "static/" + projectName + "/js/[name]-[hash:5].js",
+        filename: "static/js/[name]-[hash:5].js",
         path: resolve("dist"),
         publicPath: "/",
-        chunkFilename: "static/" + projectName + "/js/[name].[hash:5].chunk.js"
+        chunkFilename: "static/js/[name].[hash:5].chunk.js"
     },
     resolve: {
         extensions: [".mjs", ".web.js", ".js", ".json", ".web.jsx", ".jsx"],
@@ -113,10 +113,7 @@ module.exports = {
                         loader: require.resolve("url-loader"),
                         options: {
                             limit: 10000,
-                            name:
-                                "static/" +
-                                projectName +
-                                "/media/[name].[hash:8].[ext]"
+                            name: "static/media/[name].[hash:8].[ext]"
                         }
                     },
                     {
@@ -228,10 +225,7 @@ module.exports = {
                         loader: require.resolve("file-loader"),
                         exclude: [/\.(js|mjs|jsx)$/, /\.html$/, /\.json$/],
                         options: {
-                            name:
-                                "static/" +
-                                projectName +
-                                "/media/[name].[hash:8].[ext]"
+                            name: "static/media/[name].[hash:8].[ext]"
                         }
                     },
                     {
@@ -247,11 +241,6 @@ module.exports = {
             }
         ]
     },
-    plugins: [
-        new MiniCssExtractPlugin({
-            filename: `static/${projectName}/css/[name]-css-[hash:5].css`
-        })
-    ],
     stats: {
         warningsFilter: warning => /Conflicting order between/gm.test(warning)
     },
