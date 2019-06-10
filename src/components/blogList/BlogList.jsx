@@ -80,7 +80,7 @@ class BlogList extends React.Component {
                         >
                             <h3 className="blog-title">{item.title}</h3>
                             <div className="blog-wrapper">
-                                <img src={config.serverHost + item.thumb} />
+                                <img src={item.thumb} />
                                 <p
                                     className={[
                                         "blog-des",

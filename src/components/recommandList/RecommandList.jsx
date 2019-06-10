@@ -19,7 +19,7 @@ export default class RecommandList extends React.Component {
                                 key={index}
                                 onClick={this.toDetail.bind(this, item.id)}
                             >
-                                <img src={config.serverHost + item.thumb} />
+                                <img src={item.thumb} />
                                 <div className="top-title">{item.title}</div>
                             </div>
                         );
@@ -31,7 +31,7 @@ export default class RecommandList extends React.Component {
                                 onClick={this.toDetail.bind(this, item.id)}
                             >
                                 <div className="left-recommand-container">
-                                    <img src={config.serverHost + item.thumb} />
+                                    <img src={item.thumb} />
                                 </div>
                                 <p className="right-title">{item.title}</p>
                                 <span className="right-time">{item.date}</span>

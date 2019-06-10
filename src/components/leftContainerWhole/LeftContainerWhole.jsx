@@ -115,7 +115,7 @@ export default class Home extends React.Component {
                     {recommendList.map((item, index) => (
                         <SpecialArt
                             title={item.title}
-                            src={config.serverHost + item.thumb}
+                            src={item.thumb}
                             key={index}
                             onClick={this.toDetail.bind(this, item.id)}
                         />

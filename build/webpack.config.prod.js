@@ -21,10 +21,10 @@ module.exports = merge(BaseConfig, {
     mode: "production",
     devtool: "#source-map",
     output: {
-        filename: "static/js/[name]-[hash:5].js",
-        path: resolve("../../../think-js/projects/self-blog-backend/www"),
+        filename: "static/" + projectName + "/js/[name]-[hash:5].js",
+        path: resolve("../../../think-js/projects/self-blog-fontend/www"),
         publicPath: "/",
-        chunkFilename: "static/js/[name].[hash:5].chunk.js"
+        chunkFilename: "static/" + projectName + "/js/[name].[hash:5].chunk.js"
     },
     optimization: {
         minimizer: [
@@ -84,13 +84,15 @@ module.exports = merge(BaseConfig, {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: `static/css/[name]-css-[hash:5].css`,
-            path: resolve("../../../think-js/projects/self-blog-backend/www")
+            filename: `static/${projectName}/css/[name]-css-[hash:5].css`,
+            path: resolve("../../../think-js/projects/self-blog-fontend/www")
         }),
         new webpack.DefinePlugin({
             SERVER_HOST: JSON.stringify("prd")
         }),
-        new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ["**/static"] }),
+        new CleanWebpackPlugin({
+            cleanOnceBeforeBuildPatterns: ["**/static/"]
+        }),
         new HtmlWebpackPlugin({
             filename: `../view/index_index.html`,
             template: paths.appHtml,

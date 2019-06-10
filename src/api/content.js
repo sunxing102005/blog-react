@@ -8,20 +8,20 @@ export function getContent(params) {
 }
 export function getBlogList(params) {
     return service({
-        url: "/font/content/listNoPage",
+        url: "/content/listNoPage",
         method: "get",
         data: params
     });
 }
 export function getRecent() {
     return service({
-        url: "/font/content/recentFiveBlogs",
+        url: "/content/recentFiveBlogs",
         method: "get"
     });
 }
 export function getBlogById(params) {
     return service({
-        url: "/font/content/getBlogById",
+        url: "/content/getBlogById",
         method: "get",
         data: params
     });
@@ -35,14 +35,14 @@ export function getAllTags(params) {
 }
 export function changeLikes(params) {
     return service({
-        url: "/font/content/changeLikes",
+        url: "/content/changeLikes",
         method: "get",
         data: params
     });
 }
 export function getLastNextBlog(params) {
     return service({
-        url: "/font/content/getLastAndNextBlog",
+        url: "/content/getLastAndNextBlog",
         method: "post",
         data: params
     });

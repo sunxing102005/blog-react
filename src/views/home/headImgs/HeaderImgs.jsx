@@ -53,7 +53,7 @@ export default class HeaderImgs extends React.Component {
         let leftImgsArr = this.state.recentBlogs.slice(3);
         let leftImgData = leftImgsArr.map(item => {
             return {
-                src: config.serverHost + item.thumb,
+                src: item.thumb,
                 id: item.id,
                 tTitle: item.category.name,
                 bTitle: item.title
@@ -71,7 +71,7 @@ export default class HeaderImgs extends React.Component {
                             key={index}
                             onClick={this.toDetail.bind(this, item.id)}
                         >
-                            <img src={config.serverHost + item.thumb} />
+                            <img src={item.thumb} />
                             <div className="img-des">{item.title}</div>
                         </div>
                     ))}
