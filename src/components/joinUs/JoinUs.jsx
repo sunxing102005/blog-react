@@ -26,7 +26,7 @@ export default class JoinUs extends React.Component {
         // console.log("scrollTop", scrollTop);
         // console.log("flag", scrollTop - followmeScrollTop > 0);
         if (scrollTop - followmeScrollTop > 0) {
-            this.setState({ className: "fixed" });
+            this.setState({ className: "fixed-join" });
         } else {
             this.setState({ className: "" });
         }
@@ -64,6 +64,12 @@ export default class JoinUs extends React.Component {
                         <i className="fa fa-wechat com-icon" />
                         <span className="content-com">sunxing102005</span>
                         <div className="com-name">微信号</div>
+                    </div>
+                    <div>
+                        <img
+                            style={{ width: "100%" }}
+                            src="http://cdn.sunx.club/wechat-sunx.jpeg"
+                        />
                     </div>
                 </div>
             </LeftContainer>

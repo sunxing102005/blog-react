@@ -12,7 +12,7 @@ const TechArticles = AsyncComponent(() =>
 const LifeArticles = AsyncComponent(() =>
     import("@/views/typeArticles/LifeArticles")
 );
-
+const AboutMe = AsyncComponent(() => import("@/views/aboutMe/AboutMe"));
 export default class Layout extends React.Component {
     render() {
         return (
@@ -28,12 +28,13 @@ export default class Layout extends React.Component {
                                 name="学无止境"
                             />
                             <Route path="/type/life" component={LifeArticles} />
+                            <Route path="/me" component={AboutMe} />
                             <Route path="/" component={Home} />
                         </Switch>
                     </div>
                 </Router>
                 <Footer>
-                    Design By SUNX <a> 孙星个人博客</a> 蜀ICP备11002373号-1
+                    Design By SUNX <a> 孙星个人博客</a> 辽ICP备19009050号
                 </Footer>
             </div>
         );

@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import AsyncComponent from "@/router/asyncComponent";
 import { HashRouter as Router, Route } from "react-router-dom";
-import "@/assets/js/scrollReveal";
+// import "@/assets/js/scrollReveal";
 const SelftLayout = AsyncComponent(() => import("@/components/layout/Layout"));
 class App extends React.Component {
     render() {

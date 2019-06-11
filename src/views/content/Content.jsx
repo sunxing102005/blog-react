@@ -167,7 +167,7 @@ class Content extends React.Component {
                             {" "}
                             {nextBlog ? nextBlog : ""}
                         </p>
-                        <div className="bottom-article">
+                        {/* <div className="bottom-article">
                             <div className="bottom-title">
                                 <i className="fa fa-book icon" />
                                 相关文章
@@ -184,7 +184,7 @@ class Content extends React.Component {
                             <div className="link-article">
                                 html5个人博客模板主题《心蓝时间轴》
                             </div>
-                        </div>
+                        </div> */}
                         <div className="bottom-article">
                             <div className="bottom-title">
                                 <i className="fa fa-comment icon" />
