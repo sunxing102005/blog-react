@@ -1,7 +1,7 @@
 ### 简介
 #### 这是React搭建个人博客网站的一部分。网站分为两部分
 - 博客前台页面
-[点这里查看](http://www.sunx.club/)
+![在这里插入图片描述](http://cdn.sunx.club/blog-fontend-gif.gif)
 - 博客后台页面
 ![在这里插入图片描述](http://cdn.sunx.club/blog-backend-gif.gif)
 
