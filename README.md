@@ -33,7 +33,9 @@
 #### 想要详细了解博客的搭建过程与相关问题，可以查看
 
 -   线上个人博客（即这个项目做出来的成果），[点这里](http://www.sunx.club/)
--   csdn 博客，[点这里](https://blog.csdn.net/qq_36228442)，查看 React 搭建博客系列。
+-   csdn 博客：
+    -   [React 搭建个人博客（一）项目简介与 React 前端踩坑](https://blog.csdn.net/qq_36228442/article/details/91459730)
+    -   [React 搭建个人博客（二）consul-template+nginx+docker 实现负载均衡](https://blog.csdn.net/qq_36228442/article/details/91878838)
 
 ### 服务启动
 
