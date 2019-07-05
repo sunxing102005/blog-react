@@ -3,6 +3,7 @@ import ToTop from "@/components/toTop/ToTop";
 import "./aboutMe.less";
 import LeftContainer from "@/components/leftContainer/LeftContainer";
 import { getBlogList } from "@/api/content";
+import { Hello } from "../../components/Hello";
 export default class Home extends React.Component {
     state = {
         blog: {}
@@ -27,6 +28,7 @@ export default class Home extends React.Component {
                 <div className="me-bg-img" />
                 <div className="me-type-container">
                     <div className="top-tip">{name}</div>
+                    <Hello compiler="TypeScript" framework="React" />
                     <div style={{ display: "flex", alignItems: "flex-start" }}>
                         <div
                             className="blog-me"

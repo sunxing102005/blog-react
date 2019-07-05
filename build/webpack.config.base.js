@@ -77,7 +77,16 @@ module.exports = {
         chunkFilename: "static/" + projectName + "/js/[name].[hash:5].chunk.js"
     },
     resolve: {
-        extensions: [".mjs", ".web.js", ".js", ".json", ".web.jsx", ".jsx"],
+        extensions: [
+            ".mjs",
+            ".web.js",
+            ".js",
+            ".json",
+            ".web.jsx",
+            ".jsx",
+            ".ts",
+            ".tsx"
+        ],
         alias: {
             "@": resolve("src")
         },
@@ -90,6 +99,16 @@ module.exports = {
         strictExportPresence: true,
         rules: [
             { parser: { requireEnsure: false } },
+            {
+                test: /\.ts(x?)$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: "ts-loader"
+                    }
+                ]
+            },
+            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
             {
                 test: /\.(js|mjs|jsx)$/,
                 enforce: "pre",
@@ -226,7 +245,12 @@ module.exports = {
                     },
                     {
                         loader: require.resolve("file-loader"),
-                        exclude: [/\.(js|mjs|jsx)$/, /\.html$/, /\.json$/],
+                        exclude: [
+                            /\.(js|mjs|jsx)$/,
+                            /\.html$/,
+                            /\.(ts|tsx)$/,
+                            /\.json$/
+                        ],
                         options: {
                             name:
                                 "static/" +

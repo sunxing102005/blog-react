@@ -8,6 +8,7 @@ import { withRouter } from "react-router-dom";
 import { queryString } from "@/utils/common";
 import dateUtil from "@/utils/date";
 import { toContentById } from "@/utils/common";
+import Toast from "@/components/common/toast/index";
 export default
 @withRouter
 class Content extends React.Component {
@@ -53,6 +54,9 @@ class Content extends React.Component {
             type: this.state.isLiked ? "minus" : "plus"
         }).then(res => {
             // message.success(res.msg);
+            this.state.isLiked
+                ? Toast.warning("点赞取消！")
+                : Toast.info("点赞成功！");
             this.setState(preState => {
                 return { isLiked: !preState.isLiked };
             });
