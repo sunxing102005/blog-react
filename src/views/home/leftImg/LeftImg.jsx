@@ -3,7 +3,6 @@ import "./leftImg.less";
 export default class LeftImg extends React.Component {
     handleClick = () => {
         const { onClick } = this.props;
-        debugger;
         onClick();
     };
     render() {

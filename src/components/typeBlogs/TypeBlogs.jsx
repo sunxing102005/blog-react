@@ -1,5 +1,5 @@
 import React from "react";
-import BlogList from "@/components/blogList/BlogList";
+import BlogList from "@/components/blogList/BlogListHook";
 import ToTop from "@/components/toTop/ToTop";
 import LeftContainerWhole from "@/components/leftContainerWhole/LeftContainerWhole";
 import "./typeBlog.less";

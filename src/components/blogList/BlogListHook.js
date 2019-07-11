@@ -7,10 +7,12 @@ import { deleteHTMLTag } from "@/utils/util";
 import dateUtil from "@/utils/date";
 import { toContentById } from "@/utils/common";
 import useAsync from "@/hooks/useAsync";
+import Toast from "@/components/common/toast/index";
+import ImageSelf from "@/components/common/image/index";
 const scrollRevealFn = scrollReveal();
 export default function BlogList(props) {
     let params = {};
-    let type = this.props.type;
+    let type = props.type;
     if (type) {
         params["category_id"] = type == "tech" ? "1" : "2";
     }
@@ -32,6 +34,9 @@ export default function BlogList(props) {
                 date
             };
         });
+    }
+    if (error) {
+        Toast.error(error);
     }
     useEffect(() => {
         scrollRevealFn.reveal(".blog-item", {
@@ -67,7 +72,12 @@ export default function BlogList(props) {
                     >
                         <h3 className="blog-title">{item.title}</h3>
                         <div className="blog-wrapper">
-                            <img src={item.thumb} />
+                            <ImageSelf
+                                src={item.thumb}
+                                defaultWidth="32%"
+                                lazy
+                                defaultHeight="1.7rem"
+                            />
                             <p
                                 className={[
                                     "blog-des",

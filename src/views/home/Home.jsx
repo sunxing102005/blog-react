@@ -1,6 +1,7 @@
 import React from "react";
 import HeaderImgs from "./headImgs/HeaderImgs";
-import BlogList from "@/components/blogList/BlogList";
+import BlogList from "@/components/blogList/BlogListHook";
+import ErrorBoundary from "@/components/common/errorBoundary/index";
 import "./home.less";
 import ToTop from "@/components/toTop/ToTop";
 
@@ -11,7 +12,9 @@ export default class Home extends React.Component {
             <div className="article-container">
                 <HeaderImgs />
                 <div style={{ display: "flex", alignItems: "flex-start" }}>
-                    <BlogList className="blog-list" />
+                    <ErrorBoundary>
+                        <BlogList className="blog-list" />
+                    </ErrorBoundary>
                     <LeftContainerWhole />
                 </div>
                 <ToTop />

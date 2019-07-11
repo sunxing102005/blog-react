@@ -1,19 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ToTop from "@/components/toTop/ToTop";
 import "./aboutMe.less";
 import LeftContainer from "@/components/leftContainer/LeftContainer";
 import { getBlogList } from "@/api/content";
-import { Hello } from "../../components/Hello";
+import Toast from "../../components/common/toast/index";
 import useAsync from "../../hooks/useAsync";
+import ImageSelf from "@/components/common/image/index";
 function AboutMe(props) {
     const params = { category_id: 33 };
-    const { loading, error, value } = useAsync(getBlogList, params);
+    const { loading, error, value } = useAsync(getBlogList, [], params);
+    console.log(
+        "value && value.content[0].content",
+        value && value.content[0].content
+    );
+    useEffect(() => {
+        if (error) Toast.error(error);
+    }, [error]);
     return (
         <div>
             <div className="me-bg-img" />
             <div className="me-type-container">
                 <div className="top-tip">自我介绍</div>
-                {/* <Hello compiler="TypeScript" framework="React" /> */}
                 <div style={{ display: "flex", alignItems: "flex-start" }}>
                     <div
                         className="blog-me"
@@ -36,8 +43,10 @@ function AboutMe(props) {
                             </p>
                         </div>
                         <LeftContainer title="微信关注">
-                            <img
+                            <ImageSelf
                                 style={{ width: "100%" }}
+                                defaultWidth="3rem"
+                                defaultHeight="3rem"
                                 src="http://cdn.sunx.club/wechat-sunx.jpeg"
                                 alt="wechat"
                             />
