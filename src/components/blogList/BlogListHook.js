@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import "./blogList.less";
 import scrollReveal from "scrollReveal";
-import LazyLoad from "react-lazyload";
 import { getBlogList } from "@/api/content";
 import { deleteHTMLTag } from "@/utils/util";
 import dateUtil from "@/utils/date";
 import { toContentById } from "@/utils/common";
 import useAsync from "@/hooks/useAsync";
 import Toast from "@/components/common/toast/index";
-import ImageSelf from "@/components/common/image/index";
+// import ImageSelf from "@/components/common/image/indexClass";
+import ImageSelf from "rc-lazy-image";
 const scrollRevealFn = scrollReveal();
 export default function BlogList(props) {
     let params = {};

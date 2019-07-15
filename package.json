@@ -14,6 +14,7 @@
         "js-cookie": "2.2.0",
         "marked": "^0.5.2",
         "query-string": "^6.5.0",
+        "rc-lazy-image": "^1.0.2",
         "react": "^16.8.6",
         "react-app-polyfill": "^0.1.3",
         "react-color": "^2.14.1",
@@ -42,6 +43,7 @@
     },
     "devDependencies": {
         "@babel/core": "7.1.0",
+        "@babel/plugin-proposal-decorators": "^7.4.4",
         "@svgr/webpack": "2.4.1",
         "awesome-typescript-loader": "^5.2.1",
         "babel-core": "7.0.0-bridge.0",

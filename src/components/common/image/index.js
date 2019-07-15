@@ -59,8 +59,8 @@ function ImageSelf(props) {
         img.src = props.src;
     };
     const handleLazyLoad = useCallback(() => {
-        console.log("elRef", elRef.current);
-        console.log("scrollState", scrollState);
+        // console.log("elRef", elRef.current);
+        // console.log("scrollState", scrollState);
         if (
             elRef.current &&
             scrollState &&
