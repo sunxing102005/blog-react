@@ -20,11 +20,11 @@ export type AsyncState<T> =
 
 export type AsyncFn<Result = any, Args extends any[] = any[]> = [
     AsyncState<Result>,
-    (args: Object) => Promise<Result>
+    (...args: Args | []) => Promise<Result>
 ];
 
 export default function useAsyncFn<Result = any, Args extends any[] = any[]>(
-    fn: (args: Object) => Promise<Result>,
+    fn: (...args: Args | []) => Promise<Result>,
     deps: DependencyList = [],
     initialState: AsyncState<Result> = { loading: false }
 ): AsyncFn<Result, Args> {
@@ -32,10 +32,10 @@ export default function useAsyncFn<Result = any, Args extends any[] = any[]>(
 
     const mounted = useRefMounted();
 
-    const callback = useCallback((args: Object) => {
+    const callback = useCallback((...args: Args | []) => {
         set({ loading: true });
 
-        return fn(args).then(
+        return fn(...args).then(
             value => {
                 if (mounted.current) {
                     set({ value, loading: false });

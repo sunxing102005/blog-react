@@ -8,7 +8,8 @@ import { queryString } from "@/utils/common";
 import dateUtil from "@/utils/date";
 import Toast from "@/components/common/toast/index";
 import useToggle from "@/hooks/useToggle";
-
+import "gitalk/dist/gitalk.css";
+import Gitalk from "gitalk";
 function Content(props) {
     const [article, setArticle] = useState({});
     const [lastBlog, setLastBlog] = useState(null);
@@ -66,6 +67,16 @@ function Content(props) {
         if (id) {
             getArticleById({ id });
             fetchLastNextBlog();
+            const gitalk = new Gitalk({
+                clientID: "7d15c88f5ede69d86dbd",
+                clientSecret: "df8c1217e3614b779763054c0f5ecdda05c3362e",
+                repo: "blog-react",
+                owner: "sunxing102005",
+                admin: ["sunxing102005"],
+                distractionFreeMode: false // Facebook-like distraction free mode
+            });
+
+            gitalk.render("comment-content");
         }
     }, [fetchLastNextBlog, location.search]);
     return (
@@ -141,6 +152,7 @@ function Content(props) {
                             <i className="fa fa-comment icon" />
                             评论
                         </div>
+                        <div id="comment-content" />
                     </div>
                 </div>
 

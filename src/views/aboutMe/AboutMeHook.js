@@ -8,7 +8,9 @@ import useAsync from "../../hooks/useAsync";
 import ImageSelf from "@/components/common/image/index";
 function AboutMe(props) {
     const params = { category_id: 33 };
-    const { loading, error, value } = useAsync(getBlogList, [], params);
+    const { loading, error, value } = useAsync(() => {
+        return getBlogList(params);
+    });
     console.log(
         "value && value.content[0].content",
         value && value.content[0].content

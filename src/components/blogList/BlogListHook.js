@@ -16,7 +16,9 @@ export default function BlogList(props) {
     if (type) {
         params["category_id"] = type == "tech" ? "1" : "2";
     }
-    const { value, error } = useAsync(getBlogList, params);
+    const { value, error } = useAsync(() => {
+        return getBlogList(params);
+    });
     let list = [];
     if (value) {
         list = value.content;
