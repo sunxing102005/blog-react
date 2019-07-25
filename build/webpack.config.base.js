@@ -16,37 +16,10 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
     const loaders = [
         {
             loader: MiniCssExtractPlugin.loader
-            // options: Object.assign(
-            //     {},
-            //     shouldUseRelativeAssetPaths
-            //         ? { publicPath: "../../" }
-            //         : undefined
-            // )
         },
         {
             loader: require.resolve("css-loader"),
             options: cssOptions
-        },
-        {
-            // Options for PostCSS as we reference these options twice
-            // Adds vendor prefixing based on your specified browser support in
-            // package.json
-            loader: require.resolve("postcss-loader"),
-            options: {
-                // Necessary for external CSS imports to work
-                // https://github.com/facebook/create-react-app/issues/2677
-                ident: "postcss",
-                plugins: () => [
-                    require("postcss-flexbugs-fixes"),
-                    require("postcss-preset-env")({
-                        autoprefixer: {
-                            flexbox: "no-2009"
-                        },
-                        stage: 3
-                    })
-                ],
-                sourceMap: shouldUseSourceMap
-            }
         }
     ];
     if (preProcessor) {
@@ -77,7 +50,16 @@ module.exports = {
         chunkFilename: "static/" + projectName + "/js/[name].[hash:5].chunk.js"
     },
     resolve: {
-        extensions: [".mjs", ".web.js", ".js", ".json", ".web.jsx", ".jsx"],
+        extensions: [
+            ".mjs",
+            ".web.js",
+            ".js",
+            ".json",
+            ".web.jsx",
+            ".jsx",
+            ".ts",
+            ".tsx"
+        ],
         alias: {
             "@": resolve("src")
         },
@@ -90,6 +72,16 @@ module.exports = {
         strictExportPresence: true,
         rules: [
             { parser: { requireEnsure: false } },
+            {
+                test: /\.ts(x?)$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: "ts-loader"
+                    }
+                ]
+            },
+            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
             {
                 test: /\.(js|mjs|jsx)$/,
                 enforce: "pre",
@@ -226,7 +218,12 @@ module.exports = {
                     },
                     {
                         loader: require.resolve("file-loader"),
-                        exclude: [/\.(js|mjs|jsx)$/, /\.html$/, /\.json$/],
+                        exclude: [
+                            /\.(js|mjs|jsx)$/,
+                            /\.html$/,
+                            /\.(ts|tsx)$/,
+                            /\.json$/
+                        ],
                         options: {
                             name:
                                 "static/" +

@@ -1,7 +1,7 @@
-import React from "react";
+import * as React from "react";
 import "./header.less";
 import { Link } from "react-router-dom";
-import { withRouter } from "react-router-dom";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 const headerList = [
     { name: "网站首页", path: "/" },
     { name: "关于我", path: "/me" },
@@ -10,9 +10,9 @@ const headerList = [
     // { name: "时间轴", path: "/" },
     // { name: "内容页", path: "/content" }
 ];
-export default
-@withRouter
-class Header extends React.Component {
+
+@(withRouter as any)
+class Header extends React.Component<RouteComponentProps> {
     render() {
         const { location } = this.props;
 
@@ -48,3 +48,5 @@ class Header extends React.Component {
         );
     }
 }
+// const typ=withRouter(Header)
+export default Header;

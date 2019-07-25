@@ -1,5 +1,8 @@
 {
-    "extends": "react-app",
+    "extends": [
+        "react-app",
+        "./node_modules/react-redux-typescript-scripts/eslint.js"
+    ],
     "rules": {
         "no-multi-spaces": 1,
         "react/jsx-tag-spacing": 1, // 总是在自动关闭的标签前加一个空格，正常情况下也不需要换行
@@ -12,3 +15,12 @@
         "react/jsx-pascal-case": 1 // React模块名使用帕斯卡命名，实例使用骆驼式命名
     }
 }
+// {
+//     "extends": [
+//         "react-app",
+//         "./node_modules/react-redux-typescript-scripts/eslint.js"
+//     ],
+//     "rules": {
+//         // you can further customize options here
+//     }
+// }

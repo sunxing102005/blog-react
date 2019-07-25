@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "@/components/header/Header";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
-import AsyncComponent from "@/router/asyncComponent";
+import AsyncComponent from "@/router/asyncComponentTs";
 import Footer from "@/components/footer/Footer";
 import "./layout.less";
 const Home = AsyncComponent(() => import("@/views/home/Home"));

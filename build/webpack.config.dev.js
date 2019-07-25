@@ -14,24 +14,9 @@ module.exports = merge(BaseConfig, {
     devtool: config.dev.devtool,
     mode: "development",
     devServer: {
-        // clientLogLevel: "warning",
-        // historyApiFallback: true,
-        // hot: true,
-        // contentBase: false, // since we use CopyWebpackPlugin.
-        // compress: true,
         host: config.dev.host,
         port: config.dev.port,
         open: config.dev.autoOpenBrowser
-        // disableHostCheck: true,
-        // overlay: config.dev.errorOverlay
-        //     ? { warnings: false, errors: true }
-        //     : false,
-        // publicPath: config.dev.assetsPublicPath,
-        // proxy: config.dev.proxyTable,
-        // quiet: true, // necessary for FriendlyErrorsPlugin
-        // watchOptions: {
-        //     poll: config.dev.poll
-        // }
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),

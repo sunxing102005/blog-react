@@ -8,8 +8,7 @@ import { withRouter } from "react-router-dom";
 import { queryString } from "@/utils/common";
 import dateUtil from "@/utils/date";
 import { toContentById } from "@/utils/common";
-export default
-@withRouter
+
 class Content extends React.Component {
     state = {
         article: {},
@@ -199,3 +198,4 @@ class Content extends React.Component {
         );
     }
 }
+export default withRouter(Content);
