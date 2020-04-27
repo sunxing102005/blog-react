@@ -34,7 +34,7 @@ export default class Layout extends React.Component {
                     </div>
                 </Router>
                 <Footer>
-                    Design By SUNX <a> 孙星个人博客</a> 辽ICP备19009050号
+                    Design By SUNX <a> 孙星个人博客</a>  <a href="http://www.beian.miit.gov.cn">辽ICP备19009050号-1</a>
                 </Footer>
             </div>
         );
