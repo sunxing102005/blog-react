@@ -8,13 +8,20 @@ export default class JoinUs extends React.Component {
         this.handleScroll = this.handleScroll.bind(this);
     }
     state = {
-        className: ""
+        className: "",
+        throttle: null
     };
     componentDidMount() {
         // let followmeScrollTop = document.getElementById("fellowMe").offsetTop;
         // this.followmeScrollTop = followmeScrollTop;
         // console.log("followmeScrollTop", followmeScrollTop);
-        window.addEventListener("scroll", throttle(this.handleScroll, 200));
+        console.log("component mounted");
+        this.throttle = throttle(this.handleScroll, 200);
+        window.addEventListener("scroll", this.throttle);
+    }
+    componentWillUnmount() {
+        console.log("component destory");
+        window.removeEventListener("scroll", this.throttle);
     }
     handleScroll(e) {
         let scrollTop = document.documentElement.scrollTop;
@@ -23,8 +30,7 @@ export default class JoinUs extends React.Component {
             return;
         }
         // console.log("followmeScrollTop", followmeScrollTop);
-        // console.log("scrollTop", scrollTop);
-        // console.log("flag", scrollTop - followmeScrollTop > 0);
+        // console.log("scrollTop", scrollTop); // console.log("flag", scrollTop - followmeScrollTop > 0);
         if (scrollTop - followmeScrollTop > 0) {
             this.setState({ className: "fixed-join" });
         } else {

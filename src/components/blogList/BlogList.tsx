@@ -1,46 +1,89 @@
-import React from "react";
-import { blogLists } from "@/enums/home";
+import * as React from "react";
 import "./blogList.less";
 import scrollReveal from "scrollReveal";
-import LazyLoad from "react-lazyload";
 import { getBlogList } from "@/api/content";
 import { deleteHTMLTag } from "@/utils/util";
 import dateUtil from "@/utils/date";
 import { toContentById } from "@/utils/common";
-import config from "@/config/index.js";
-class BlogList extends React.Component {
+import { catchError } from "@/utils/decorators/catchError";
+import Toast from "@/components/common/toast/index";
+import LazyImage from "rc-lazy-image";
+type propsType = {
+    type: string;
+};
+type categoryType = {
+    name: string;
+};
+type blogItem = {
+    id: string | number;
+    thumb: string | undefined;
+    des: string;
+    category: categoryType;
+    date: string | undefined;
+    title: string;
+    view: number;
+    likes: number;
+};
+type stateType = {
+    list: blogItem[];
+};
+class BlogList extends React.Component<propsType, stateType> {
     constructor(props) {
         super(props);
         this.scrollReveal = scrollReveal();
     }
-    state = {
-        list: [],
-        recentBLogs: []
+    scrollReveal: any;
+    state: stateType = {
+        list: []
     };
+    @catchError()
     componentWillMount() {
         let params = {};
         let type = this.props.type;
         if (type) {
             params["category_id"] = type == "tech" ? "1" : "2";
         }
-        getBlogList(params).then(res => {
-            let list = res.content;
-            list = list.map(item => {
-                let date = null;
-                if (item.publish_time) {
-                    date = dateUtil.toFormat(
-                        new Date(item.publish_time),
-                        "yyyy-MM-dd"
-                    );
-                }
-                return {
-                    ...item,
-                    des: deleteHTMLTag(item.content),
-                    date
-                };
-            });
-            this.setState({ list });
+        this.fetchData(params);
+        // getBlogList(params).then(res => {
+        //     let list = res.content;
+        //     list = list.map(item => {
+        //         let date = null;
+        //         if (item.publish_time) {
+        //             date = dateUtil.toFormat(
+        //                 new Date(item.publish_time),
+        //                 "yyyy-MM-dd"
+        //             );
+        //         }
+        //         return {
+        //             ...item,
+        //             des: deleteHTMLTag(item.content),
+        //             date
+        //         };
+        //     });
+        //     this.setState({ list });
+        // });
+    }
+    @catchError(() => {
+        Toast.error("博客列表查询失败！");
+    })
+    async fetchData(params: object) {
+        let res = await getBlogList(params);
+        let list = res.content;
+        list = list.map(item => {
+            let date;
+            if (item.publish_time) {
+                date = dateUtil.toFormat(
+                    new Date(item.publish_time),
+                    "yyyy-MM-dd"
+                );
+            }
+            return {
+                ...item,
+                des: deleteHTMLTag(item.content),
+                date
+            };
         });
+        this.setState({ list });
     }
     componentDidMount() {
         //设置 blog-item 滚动动画效果
@@ -80,7 +123,12 @@ class BlogList extends React.Component {
                         >
                             <h3 className="blog-title">{item.title}</h3>
                             <div className="blog-wrapper">
-                                <img src={item.thumb} />
+                                <LazyImage
+                                    src={item.thumb}
+                                    defaultWidth="32%"
+                                    lazy
+                                    defaultHeight="1.7rem"
+                                />
                                 <p
                                     className={[
                                         "blog-des",
@@ -127,7 +175,4 @@ class BlogList extends React.Component {
         );
     }
 }
-BlogList.defaultProps = {
-    category_id: null
-};
 export default BlogList;

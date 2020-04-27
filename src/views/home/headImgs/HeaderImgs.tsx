@@ -1,35 +1,53 @@
-import React from "react";
+import * as React from "react";
 import "./headerImgs.less";
 import LeftImg from "../leftImg/LeftImg";
 import { shufflingImgs } from "@/enums/home";
 import { getRecent } from "@/api/content";
 import { toContentById } from "@/utils/common";
-import config from "@/config/index.js";
-export default class HeaderImgs extends React.Component {
+import { catchError } from "@/utils/decorators/catchError";
+import Toast from "@/components/common/toast/index";
+import { injectUnmount } from "@/utils/decorators/injectUnmount";
+import { ReactAutoBind } from "@/utils/decorators/reactAutoBind";
+type cateType = {
+    name: string;
+};
+type blogType = {
+    id?: string;
+    name?: string;
+    title: string;
+    thumb: string;
+    category: cateType;
+};
+type stateType = {
+    currIndex: number;
+    recentBlogs: blogType[];
+};
+
+@injectUnmount
+class HeaderImgs extends React.Component<{}, stateType> {
     constructor(props) {
         super(props);
         this.handleControlPage = this.handleControlPage.bind(this);
         this.changeCurrIndex = this.changeCurrIndex.bind(this);
     }
-    state = {
+    state: stateType = {
         currIndex: 0,
         recentBlogs: []
     };
-
     componentDidMount() {
         this.getRecentFiveBlog();
     }
-    getRecentFiveBlog = () => {
-        getRecent().then(res => {
-            let blogs = res.recent.content;
-            // console.log("blogs", res);
-            this.setState({ recentBlogs: blogs });
-            window.setInterval(() => {
-                // console.log("this.state.currIndex ", this.state.currIndex);
-                this.changeCurrIndex(1);
-            }, 5000);
-        });
-    };
+    @catchError(() => {
+        Toast.error("RecentBlogs查询失败！");
+    })
+    async getRecentFiveBlog() {
+        let res = await getRecent();
+        let blogs = res.recent.content;
+        this.setState({ recentBlogs: blogs });
+        window.setInterval(() => {
+            this.changeCurrIndex(1);
+        }, 5000);
+    }
     handleControlPage(type) {
         const increment = type === "left" ? -1 : 1;
         this.changeCurrIndex(increment);
@@ -59,7 +77,6 @@ export default class HeaderImgs extends React.Component {
                 bTitle: item.title
             };
         });
-        // console.log("shuffleImgs", shuffleImgs);
         return (
             <div className="header-imgs-container">
                 <div className="shuffling-container">
@@ -103,7 +120,6 @@ export default class HeaderImgs extends React.Component {
                 <div className="rightImgs">
                     {leftImgData.map((item, index) => (
                         <LeftImg
-                            className="left-img-item"
                             {...item}
                             key={index}
                             onClick={this.toDetail.bind(this, item.id)}
@@ -114,3 +130,4 @@ export default class HeaderImgs extends React.Component {
         );
     }
 }
+export default HeaderImgs;

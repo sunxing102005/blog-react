@@ -135,14 +135,6 @@ module.exports = {
                                     }
                                 ],
                                 [
-                                    "import",
-                                    {
-                                        libraryName: "antd",
-                                        libraryDirectory: "es",
-                                        style: true
-                                    }
-                                ],
-                                [
                                     "@babel/plugin-proposal-decorators",
                                     {
                                         legacy: true

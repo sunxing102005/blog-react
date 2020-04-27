@@ -1,10 +1,15 @@
-import React from "react";
+import * as React from "react";
 import "./leftImg.less";
-export default class LeftImg extends React.Component {
+type propType = {
+    onClick?: Function;
+    src?: string;
+    bTitle?: string;
+    tTitle?: string;
+};
+export default class LeftImg extends React.Component<propType, {}> {
     handleClick = () => {
         const { onClick } = this.props;
-        debugger;
-        onClick();
+        onClick!();
     };
     render() {
         const { src, bTitle, tTitle } = this.props;

@@ -4,13 +4,19 @@
         "lib": ["es6", "dom"],
         "rootDir": "src",
         "module": "commonjs",
+        "allowJs": true,
         "target": "es5",
         "sourceMap": true,
         "moduleResolution": "node",
         "noImplicitReturns": true,
         "noImplicitThis": true,
         "experimentalDecorators": true,
-        "noImplicitAny": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["src/*"]
+        },
+        "emitDecoratorMetadata": true,
+        // "noImplicitAny": true,
         "strictNullChecks": true
     },
     "include": ["./src/"],

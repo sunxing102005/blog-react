@@ -1,6 +1,5 @@
 import React from "react";
 import "./content.less";
-// import { message } from "antd";
 import TagGroup from "@/components/tag/TagGroup";
 import { getBlogById, changeLikes, getLastNextBlog } from "@/api/content";
 import LeftContainerWhole from "@/components/leftContainerWhole/LeftContainerWhole";

@@ -5,7 +5,9 @@ import "./home.less";
 import ToTop from "@/components/toTop/ToTop";
 import ErrorBoundary from "@/components/common/ErrorBoundary";
 import LeftContainerWhole from "@/components/leftContainerWhole/LeftContainerWhole";
-export default class Home extends React.Component {
+import { injectUnmount } from "@/utils/decorators/injectUnmount";
+@injectUnmount
+class Home extends React.Component {
     render() {
         return (
             <div className="article-container">
@@ -21,3 +23,4 @@ export default class Home extends React.Component {
         );
     }
 }
+export default Home;

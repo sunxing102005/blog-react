@@ -1,6 +1,5 @@
 import React from "react";
 import LeftContainer from "@/components/leftContainer/LeftContainer";
-import { specialArts, recommandList, tagList } from "@/enums/home";
 import SpecialArt from "@/components/specialArt/SpecialArt";
 import RecommandList from "@/components/recommandList/RecommandList";
 import TagGroup from "@/components/tag/TagGroup";
@@ -9,7 +8,6 @@ import "./leftContainerWhole.less";
 import { getBlogList, getRecent, getAllTags } from "@/api/content";
 import dateUtil from "@/utils/date";
 import { toContentById } from "@/utils/common";
-import config from "@/config/index.js";
 export default class Home extends React.Component {
     state = {
         viewOrderedList: [],
@@ -95,9 +93,6 @@ export default class Home extends React.Component {
             this.setState({ recommendList: list });
         });
     };
-    toDetail = id => {
-        toContentById(id);
-    };
     getAllTags = () => {
         return getAllTags({ type: "tag" }).then(res => {
             let list = res.map(item => item.name);
@@ -117,7 +112,9 @@ export default class Home extends React.Component {
                             title={item.title}
                             src={item.thumb}
                             key={index}
-                            onClick={this.toDetail.bind(this, item.id)}
+                            onClick={() => {
+                                toContentById(item.id);
+                            }}
                         />
                     ))}
                 </LeftContainer>

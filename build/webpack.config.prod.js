@@ -67,11 +67,6 @@ module.exports = merge(BaseConfig, {
         splitChunks: {
             chunks: "all",
             cacheGroups: {
-                antd: {
-                    name: "antd-UI",
-                    priority: 20, // 权重要大于 vendor 和 app 不然会被打包进 vendor 或者 app
-                    test: /[\\/]node_modules[\\/]antd[\\/]/
-                },
                 vendor: {
                     name: "chunk-vendor",
                     test: /[\\/]node_modules[\\/]/,

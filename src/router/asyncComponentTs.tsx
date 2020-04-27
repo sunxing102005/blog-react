@@ -1,4 +1,5 @@
 import * as React from "react";
+import { inject_unmount } from "@/utils/unmount";
 interface InjectedProps {}
 const aysncComponent = <BaseProps extends InjectedProps>(
     getComponent: () => Promise<any>
@@ -6,7 +7,7 @@ const aysncComponent = <BaseProps extends InjectedProps>(
     type HocState = {
         readonly Component: React.ComponentType<any> | null;
     };
-    return class HOC extends React.Component<BaseProps, HocState> {
+    class HOC extends React.Component<BaseProps, HocState> {
         readonly state: HocState = {
             Component: null
         };
@@ -26,6 +27,7 @@ const aysncComponent = <BaseProps extends InjectedProps>(
             const { Component } = this.state;
             return Component ? <Component /> : null;
         }
-    };
+    }
+    return inject_unmount(HOC);
 };
 export default aysncComponent;

@@ -1,7 +1,11 @@
-import React from "react";
+import * as React from "react";
 import { tagColorList } from "@/enums/home";
 import Tag from "./Tag";
-export default class TagGroup extends React.Component {
+type tagProps = {
+    list: Array<string>;
+    style: object;
+};
+export default class TagGroup extends React.Component<tagProps, {}> {
     render() {
         const { list, style } = this.props;
         let count = 0;
